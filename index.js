@@ -56,9 +56,19 @@ flock.events.on('client.slashCommand', function (event, callback) {
     // 	console.log(obj.answer);
     // }
     console.log(relevantQuestions);
-    if(relevantQuestions.length != 0  ){
+    if(relevantQuestions.length != 0 ){
+
     	callback(null,{text:'your query is being processed'});
-    } else {
+    	for(var obj of relevantQuestions){
+    		flock.chat.sendMessage(config.botToken, {
+        	to: event.userId,
+        	text: obj.question + '\n' + obj.answer + '\n'
+        
+    });
+    	}
+    	
+}
+    else {
     	callback(null,{text:'type another queery' });
     }
 
