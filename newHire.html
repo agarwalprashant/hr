@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>
+<body>
+<h1>HI new Hire</h1>
+<h3> We are here to Streamline new hire onboarding by providing all the information new employees need in one place.</h3>
+
+<button onclick="newUser()">Welcome User</button>
+<h3>Get Started</h3>
+</body>
+
+<script>
+function newUser() {
+
+var url=" https://6a8d3545.ngrok.io/newUserGetStarted";
+	var string="modal";
+	flock.openWidget(url, string)
+}
+
+</script>
+</html>

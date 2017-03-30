@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>
+<body>
+<h1>Hi Welcome HR </h1>
+<h3>Get Started By entering answers to Frequently asked questions </h3>
+
+<button onclick = "addFAQ()">Add FAQs</button>
+<button>Browse FAQs</button>
+<button>FAQs Stats</button>
+<button>Browse New Employees</button>
+
+</body>
+
+<script>
+function addFAQ() {
+
+var url=" https://6a8d3545.ngrok.io/addFAQ";
+	var string="modal";
+	flock.openWidget(url, string)
+}
+
+</script>
+</html>

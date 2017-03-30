@@ -1,0 +1,32 @@
+<html>
+    <head>
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>
+    <body>
+        <button onclick="myFunction('hr')">Hr </button>
+        <button onclick="myFunction('newHire')">New Employees </button>
+        <button onclick="myFunction('oldEmp')">Old Employee</button>
+    </body>
+    <script>
+function myFunction(str) {
+	var url=" https://6a8d3545.ngrok.io/" + str;
+	var string="modal";
+	flock.openWidget(url, string)
+}
+</script>
+</html>
+
+
+<!-- <html>\
+    <head>\
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>\
+    <body>\
+        <button onclick="myFunction()">Click me</button>\
+    </body>\
+    <script>\
+function myFunction() {\
+	var url="https://6dadaec6.ngrok.io/prashant";\
+	var string="modal";\
+	flock.openWidget(url, string)\
+}\
+</script>\
+</html>' -->
