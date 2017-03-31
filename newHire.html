@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>
+<!-- <script type="text/javascript" src="index.js"></script> -->
+
+
+ </head>
 <body>
 <h1>HI new Hire</h1>
 <h3> We are here to Streamline new hire onboarding by providing all the information new employees need in one place.</h3>
+<h2>
+Detailed Info
+</h2>
+<button id="getStarted">Getting Started</button>
 
-<button onclick="newUser()">Welcome User</button>
-<h3>Get Started</h3>
+<!-- <flockml> Getting started <action type="newHire">Go!</action> </flockml> -->
+
 </body>
 
 <script>
-function newUser() {
 
-var url=" https://6a8d3545.ngrok.io/newUserGetStarted";
-	var string="modal";
-	flock.openWidget(url, string)
-}
+
+// var url=" https://6a8d3545.ngrok.io/newUserGetStarted";
+// 	var string="modal";
+// 	flock.openWidget(url, string)
+
+document.getElementById("getStarted").addEventListener("click",function(evt){
+	$.get('/onNewHireGettingStarted', function(data)	{
+		// console.log(window.location);
+		flock.close();
+	}).fail(function(err)	{
+		console.log(err);
+	});
+	
+
+	
+
+	
+	
+});
+
+
 
 </script>
 </html>

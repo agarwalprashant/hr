@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 var config = require('./config.js');
 var express = require('express');
@@ -10,7 +10,9 @@ var fs = require('fs');
 var util = require('util');
 var path = require('path');
 const bodyParser = require('body-parser');
+var jwt = require('jwt-decode');
 
+// var userID;
 var arr = [];
 
 flock.appId = config.appId;
@@ -27,12 +29,21 @@ app.listen(8080,function(){
 	console.log("Listening on 8080");
 });
 
+var userID;
+
 flock.events.on('app.install',function(event,callback){
 
 // store.saveToken(event.userId,event.token);
 callback();
+userID = event.userId;
+// console.log(userID);
+flock.chat.sendMessage(config.botToken, {
+        	to: event.userId,
+        	attachments:[{"title":"relevant questions and answers","color": "red","description":"Here are the relevant questions","views":{"widget":{"src":"http:%2F%2Fwww.polls.com%2Fyour-poll-url","width": 200,"height": 200}}}]
 
+    });
 });
+
 
 
 
@@ -62,7 +73,8 @@ flock.events.on('client.slashCommand', function (event, callback) {
     	for(var obj of relevantQuestions){
     		flock.chat.sendMessage(config.botToken, {
         	to: event.userId,
-        	text: obj.question + '\n' + obj.answer + '\n'
+        	attachments:[{"title":"relevant questions and answers",
+    "color": "red","description":"Here are the relevant questions","views":{"widget":{"src":"http:%2F%2Fwww.polls.com%2Fyour-poll-url","width": 200,"height": 200}}}]
         
     });
     	}
@@ -130,6 +142,10 @@ var sendAlarm = function (alarm) {
 var listTemplate = fs.readFileSync('list.mustache.html', 'utf8');
 app.get('/list', function (req, res) {
     var event = JSON.parse(req.query.flockEvent);
+    // userID = req.query.flockEventToken;
+    console.log(req.query.flockEventToken); 
+    userID = jwt(req.query.flockEventToken).userId;
+
     // var alarms = store.userAlarms(event.userId).map(function (alarm) {
     //     return {
     //         text: alarm.text,
@@ -153,8 +169,26 @@ app.get('/hr',function(req,res){
 	res.sendFile(path.join(__dirname + '/hr.html'));
 });
 
+app.get('/others',function(req,res){
+	res.sendFile(path.join(__dirname + '/others.html'));
+});
+
+
+app.get('/onNewHireGettingStarted', function(req, res){
+	//show user something
+	//send message to user
+    console.log(req.query);
+console.log(userID);
+    flock.chat.sendMessage(config.botToken, {
+
+            to: userID,
+            text:"hi there"
+    });
+    res.send('hi');
+});
 
 app.get('/newHire',function(req,res){
+
 	res.sendFile(path.join(__dirname + '/newHire.html'));
 });
 
@@ -168,10 +202,11 @@ res.sendFile(path.join(__dirname + '/addFAQ.html'));
 
 });
 
-app.get('/newUserGetStarted',function(req,res){
-res.sendFile(path.join(__dirname + '/newUserGetStarted.html'));
+app.get('/browseFAQ',function(req,res){
+res.sendFile(path.join(__dirname + '/browseFAQ.html'));
 
 });
+
 
 app.post('/formData',function(req,res){
 console.log("Prashant agarwal");
@@ -186,6 +221,13 @@ var formData = {
 arr.push(formData);
 
 //console.log(arr);
+
+});
+
+app.post('/hrInformation',function(req,res){
+console.log("HR Information");
+
+
 
 });
 

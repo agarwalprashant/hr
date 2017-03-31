@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://apps-static.flock.co/js-sdk/0.1.0/flock.js"></script>    </head>
+<body>
+
+<button onclick="myFunction('newHire')">New Employee</button>
+<button onclick="myFunction('oldEmp')">Old Employee</button>
+
+</body>
+<script type="text/javascript">
+	function myFunction(str){
+		var url=" https://6a8d3545.ngrok.io/" + str;
+	var string="modal";
+	flock.openWidget(url, string)
+	}
+</script>
+</html>

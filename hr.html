@@ -7,8 +7,7 @@
 <h3>Get Started By entering answers to Frequently asked questions </h3>
 
 <button onclick = "addFAQ()">Add FAQs</button>
-<button>Browse FAQs</button>
-<button>FAQs Stats</button>
+<button onclick="browseFAQ()">Browse FAQs</button>
 <button>Browse New Employees</button>
 
 </body>
@@ -17,6 +16,12 @@
 function addFAQ() {
 
 var url=" https://6a8d3545.ngrok.io/addFAQ";
+	var string="modal";
+	flock.openWidget(url, string)
+}
+
+function browseFAQ(){
+	var url=" https://6a8d3545.ngrok.io/browseFAQ";
 	var string="modal";
 	flock.openWidget(url, string)
 }
